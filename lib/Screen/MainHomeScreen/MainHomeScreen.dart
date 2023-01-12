@@ -120,13 +120,24 @@ class MainHomeScreen extends StatelessWidget {
           // width:
           child: ListView(
             children: [
+              20.h.heightBox,
               Center(
                 child: Icon(
                   Icons.home,
-                  size: 70.sp,
-                  color: ConstColors.MainColor,
+                  size: 80.sp,
+                  color: ConstColors.DarkMainColor,
                 ),
-              )
+              ),
+              50.h.heightBox,
+              drawerlisttile(Icon(Icons.person), "Personal Care"),
+              drawerlisttile(Icon(Icons.person), "Sexual Wellness"),
+              drawerlisttile(Icon(Icons.person), "Homeopathy"),
+              drawerlisttile(Icon(Icons.person), "Medical Devices"),
+              drawerlisttile(Icon(Icons.person), "Diet Nutrition"),
+              drawerlisttile(Icon(Icons.person), "Shop by Concern"),
+              drawerlisttile(Icon(Icons.person), "Diabetic Care"),
+              drawerlisttile(Icon(Icons.person), "Privacy Policy"),
+              drawerlisttile(Icon(Icons.person_outline), "Login"),
             ],
           ),
         ),
@@ -276,5 +287,15 @@ class MainHomeScreen extends StatelessWidget {
         ),
       );
     });
+  }
+
+  ListTile drawerlisttile(Icon icon, var Name) {
+    return ListTile(
+      leading: icon,
+      title: Text(
+        "$Name",
+        style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300),
+      ),
+    );
   }
 }

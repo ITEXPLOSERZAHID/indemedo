@@ -17,7 +17,8 @@ class TestCategory extends StatelessWidget {
                           .length,
                       itemBuilder: (context, index) {
                         return Text(
-                          mapCategoriesSubData[index]['name']
+                       mapResponse['categories']['data']
+                              ['children_data'][index]['name']
                               // mapResponse['bannertop']['data'][index]["image"]
                               // .runtimeType
                               .toString(),
