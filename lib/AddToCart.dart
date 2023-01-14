@@ -13,6 +13,7 @@ class AddToCart extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 15.h, vertical: 10.w),
         child: Column(
           children: [
+            20.h.heightBox,
             ListTile(
               title: Text(
                 "Items Total (MRP)",
@@ -26,7 +27,6 @@ class AddToCart extends StatelessWidget {
                     color: Colors.black),
               ),
             ),
-            10.h.heightBox,
             ListTile(
               title: Text(
                 "Price Discount",
@@ -37,11 +37,9 @@ class AddToCart extends StatelessWidget {
                 style: TextStyle(fontSize: 12.sp, color: Colors.grey),
               ),
             ),
-            5.h.heightBox,
             Divider(
               thickness: 1,
             ),
-            5.h.heightBox,
             ListTile(
               title: Text(
                 "Shipping Fee",
@@ -56,7 +54,6 @@ class AddToCart extends StatelessWidget {
                     color: Colors.black),
               ),
             ),
-            5.h.heightBox,
             Divider(
               thickness: 1,
             ),
@@ -76,7 +73,6 @@ class AddToCart extends StatelessWidget {
                     color: Colors.grey),
               ),
             ),
-            20.h.heightBox,
             ListTile(
               title: Text(
                 "Total Saving",
