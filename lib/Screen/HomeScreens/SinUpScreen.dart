@@ -12,6 +12,8 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      
+      
       appBar: AppBar(
         backgroundColor: ConstColors.DarkMainColor,
         leading: GestureDetector(
@@ -28,9 +30,11 @@ class LoginScreen extends StatelessWidget {
           style: TextStyle(
               color: Colors.white,
               fontSize: 18.sp,
-              fontWeight: FontWeight.w600),
+              fontWeight: FontWeight.w500),
         ),
       ),
+      
+      
       body: SingleChildScrollView(
         child: Column(
           children: [

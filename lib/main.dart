@@ -7,7 +7,7 @@ import 'package:indimedo/Screen/HomeScreens/PrescriptionScreen.dart';
 import 'package:indimedo/Screen/HomeScreens/SinUpScreen.dart';
 import 'package:indimedo/Screen/HomeScreens/slider_screen.dart';
 import 'package:indimedo/SplashScreen.dart';
-import 'package:indimedo/testCategory.dart';
+import 'package:indimedo/Testing%20Folder/testcategorydesign.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return GetMaterialApp(
             builder: EasyLoading.init(),
-            home: LoginScreen(),
+            home: SplashScreen(),
             debugShowCheckedModeBanner: false,
           );
         });

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:indimedo/Constants/ColorConstants.dart';
+import 'package:indimedo/Screen/HomeScreens/AllMedicine.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class SearchProduct extends StatefulWidget {
   const SearchProduct({super.key});
@@ -66,8 +69,28 @@ class _SearchProductState extends State<SearchProduct> {
                 )
         ],
       ),
-      body: Column(
-        children: [],
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.h),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            10.h.heightBox,
+            GestureDetector(
+              onTap: () {
+                Get.to(() => AllMedicine());
+              },
+              child: Text(
+                "Meganeuron NT 75 Tablet",
+                style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
+              ),
+            ),
+            10.h.heightBox,
+            Text(
+              "Meganeuron",
+              style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),
+            ),
+          ],
+        ),
       ),
     );
   }

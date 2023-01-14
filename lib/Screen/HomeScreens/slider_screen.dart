@@ -95,8 +95,8 @@ class _SliderScreenState extends State<SliderScreen> {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: currentIndex == entry.key
-                          ? ConstColors.MainColor
-                          : Colors.white),
+                          ? Colors.white
+                          : Colors.grey),
                 ),
               );
             }).toList(),

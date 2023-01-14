@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:indimedo/APIService.dart';
 import 'package:indimedo/MedicineScreen.dart';
@@ -9,8 +10,7 @@ import 'package:indimedo/Screen/CatagoriesScreens/ShopByConcer.dart';
 import 'package:indimedo/Screen/CatagoriesScreens/personalCare.dart';
 
 class ExpandableList extends StatelessWidget {
-
-  final PC =  List.generate(
+  final PC = List.generate(
       mapPersonalCare.length, (i) => "${mapPersonalCare[i]['name']}");
 
   // final DN = new List.generate(
@@ -30,7 +30,6 @@ class ExpandableList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-
         // ListView.builder(
         //   shrinkWrap: true,
         //   physics: ScrollPhysics(),
@@ -62,11 +61,21 @@ class ExpandableList extends StatelessWidget {
             shrinkWrap: true,
             physics: ScrollPhysics(),
             itemBuilder: (context, i) => ExpansionTile(
-              title: Text("${mapCategoriesData[i]['name']}"),
+              title: Container(
+                  child: Text(
+                "${mapCategoriesData[i]['name']}",
+                style: TextStyle(color: Colors.black, fontSize: 12.sp),
+              )),
               children: PC
-                  .map((val) => ListTile(
-                        title: Text(val),
-                      ))
+                  .map(
+                    (val) => ListTile(
+                        dense: true,
+                        title: Text(
+                          val,
+                          style:
+                              TextStyle(color: Colors.black, fontSize: 12.sp),
+                        )),
+                  )
                   .toList(),
             ),
             itemCount: mapCategoriesData.length,
