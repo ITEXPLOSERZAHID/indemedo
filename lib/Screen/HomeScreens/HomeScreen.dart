@@ -205,7 +205,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       "FASTEST MEDICINE HOME DELIVERY IN DELHI-NCR | ORDER MEDICINE ONLINE FROM INDIMEDO",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: Color(0xff535253),
+                          // color: Color(0xff535253),
+                          color: Colors.black,
                           fontWeight: FontWeight.w500,
                           fontSize: 16.sp),
                     ),
@@ -891,47 +892,60 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 25.h.heightBox,
-                Text(
-                  "Your Betterment is Our Concern!!",
-                  style: TextStyle(
-                      color: Colors.grey[700],
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16.sp),
-                ),
-                10.h.heightBox,
-                Text(
-                  "We lot you feel good!",
-                  style: TextStyle(
-                      color: Colors.grey[500],
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16.sp),
-                ),
-                10.h.heightBox,
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Made with",
+                      "Your Betterment is Our Concern!!",
                       style: TextStyle(
-                          color: Colors.grey[500],
+                          color: Colors.grey[700],
                           fontWeight: FontWeight.w500,
-                          fontSize: 14.sp),
+                          fontSize: 16.sp),
                     ),
-                    4.w.widthBox,
-                    Container(
-                        height: 20.h,
-                        width: 20.w,
-                        child: Image.asset("assets/h23.png")),
-                    4.w.widthBox,
+                    8.h.heightBox,
                     Text(
-                      "by Indimedo",
+                      "Sign in to start your heathcare journey",
                       style: TextStyle(
                           color: Colors.grey[500],
                           fontWeight: FontWeight.w500,
-                          fontSize: 14.sp),
+                          fontSize: 16.sp),
+                    ),
+                    // Text(
+                    //   "We lot you feel good!",
+                    //   style: TextStyle(
+                    //       color: Colors.grey[500],
+                    //       fontWeight: FontWeight.w500,
+                    //       fontSize: 16.sp),
+                    // ),
+                    8.h.heightBox,
+                    Row(
+                      children: [
+                        Text(
+                          "Made with",
+                          style: TextStyle(
+                              color: Colors.grey[500],
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14.sp),
+                        ),
+                        3.w.widthBox,
+                        Container(
+                            height: 20.h,
+                            width: 20.w,
+                            child: Image.asset("assets/h23.png")),
+                        3.w.widthBox,
+                        Text(
+                          "by Indimedo",
+                          style: TextStyle(
+                              color: Colors.grey[500],
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14.sp),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                40.h.heightBox,
+
+                30.h.heightBox,
               ],
             ),
           ),
@@ -1272,12 +1286,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 "includes 12 tests",
                 style: TextStyle(color: Colors.grey, fontSize: 14.sp),
               ),
-              10.h.heightBox,
+              5.h.heightBox,
               Container(
-                  height: 20.h,
-                  width: 60.w,
+                  height: 30.h,
+                  width: 80.w,
                   child: Image.asset("assets/me.jpg")),
-              10.h.heightBox,
+              5.h.heightBox,
               Text(
                 "Iron Studies Iron, TIBC, TS%",
                 style: TextStyle(color: Colors.grey, fontSize: 14.sp),

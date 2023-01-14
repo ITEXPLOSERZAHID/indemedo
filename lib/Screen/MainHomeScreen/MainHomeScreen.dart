@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:indimedo/Constants/ColorConstants.dart';
 import 'package:indimedo/Controller/Maincontrollers.dart';
 import 'package:indimedo/Screen/HomeScreens/CallScreens.dart';
-import 'package:indimedo/Screen/HomeScreens/CategoriesScreen.dart';
+import 'package:indimedo/Screen/HomeScreens/PrescriptionScreen.dart';
 import 'package:indimedo/Screen/HomeScreens/CategoryListView.dart';
 import 'package:indimedo/Screen/HomeScreens/HomeScreen.dart';
 import 'package:indimedo/Screen/HomeScreens/OrderScreens.dart';
@@ -19,11 +19,13 @@ class MainHomeScreen extends StatelessWidget {
   // int _selectIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
-    CategoryScreen(),
+    PrescriptionScreen(),
     OrderScreen(),
     CallScreen(),
     ProfileScreen(),
   ];
+
+  var changeColor = ConstColors.MainColor;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class MainHomeScreen extends StatelessWidget {
             AppBar(
           backgroundColor: ConstColors.MainColor,
           elevation: 0,
+          titleSpacing: 0,
           title: Container(
               height: 50.h,
               width: 100.w,
@@ -58,7 +61,7 @@ class MainHomeScreen extends StatelessWidget {
               },
               child: Center(
                 child: Text(
-                  "Sign In",
+                  "Sign Up",
                   style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w600,
@@ -195,17 +198,6 @@ class MainHomeScreen extends StatelessWidget {
         //                   fontWeight: FontWeight.w500),
         //             )),
 
-        //         ExpandableList(),
-        //         // ListView.builder(
-        //         //   shrinkWrap: true,
-        //         //   itemBuilder: (BuildContext context, int index) =>
-        //         //       EntryItem(data[index]),
-        //         //   itemCount: data.length,
-        //         // ),
-        //       ],
-        //     ),
-        //   ),
-        // ),
         // ///////////////////////////////////////////////////
         body: _widgetOptions[controller.index],
         bottomNavigationBar: Container(
@@ -221,7 +213,9 @@ class MainHomeScreen extends StatelessWidget {
                       child: Container(
                           height: 24.h,
                           width: 24.h,
-                          child: Image.asset("assets/Home.png"))),
+                          child: Image.asset(
+                            "assets/Home.png",
+                          ))),
                 ),
                 BottomNavigationBarItem(
                   label: "Prescription",
@@ -266,7 +260,10 @@ class MainHomeScreen extends StatelessWidget {
                       child: Container(
                           height: 24.h,
                           width: 24.h,
-                          child: Image.asset("assets/p.png"))),
+                          child: Image.asset(
+                            "assets/p.png",
+                            // color: ConstColors.MainColor,
+                          ))),
                 ),
               ],
               currentIndex: controller.index,
@@ -275,8 +272,9 @@ class MainHomeScreen extends StatelessWidget {
                 color: Colors.grey,
               ),
               selectedLabelStyle: TextStyle(
-                color: ConstColors.MainColor,
-              ),
+                  color: ConstColors.MainColor,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 9.sp),
 
               // showUnselectedLabels: true,
               // unselectedItemColor: Colors.grey,

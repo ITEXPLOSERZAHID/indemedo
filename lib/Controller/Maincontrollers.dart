@@ -38,11 +38,21 @@ class MainController extends GetxController {
     refresh();
   }
 
-  var _appbar = false;
-  isShow(value) {
-    _appbar = value;
-    update();
-  }
+  // var pressedBool = true;
+  // changeStatus() {
+  //   if (pressedBool) {
+  //     pressedBool = false;
+  //   } else {
+  //     pressedBool = true;
+  //   }
+  //   update();
+  // }
+
+  // var _appbar = false;
+  // isShow(value) {
+  //   _appbar = value;
+  //   update();
+  // }
 
   var index = 0;
   pages(index1) {
