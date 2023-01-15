@@ -5,6 +5,10 @@ import 'dart:convert';
 
 class MainController extends GetxController {
   static MainController instance = Get.find();
+
+  var ishowAp = true.obs;
+  var isColorActive = true.obs;
+
   /////////// Male & Female ////////////////
 
   // late Rx<User?> _user;

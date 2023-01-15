@@ -31,93 +31,92 @@ class MainHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<MainController>(builder: (controller) {
       return Scaffold(
-        appBar:
-            // _.isShow == true?
-            AppBar(
-          backgroundColor: ConstColors.MainColor,
-          elevation: 0,
-          titleSpacing: 0,
-          title: Container(
-              height: 50.h,
-              width: 100.w,
-              child: Image.asset(
-                "assets/Mlogo.png",
-                fit: BoxFit.cover,
-              )),
-          leading: GestureDetector(
-            onTap: () {
-              Get.to(() => Categorylist());
-            },
-            child: Icon(
-              Icons.menu,
-              color: Colors.white,
-              size: 25,
-            ),
-          ),
-          actions: [
-            GestureDetector(
-              onTap: () {
-                Get.to(() => LoginScreen());
-              },
-              child: Center(
-                child: Text(
-                  "Sign Up",
-                  style: TextStyle(
-                      fontSize: 20.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white),
-                ),
-              ),
-            ),
-            7.w.widthBox,
-            GestureDetector(
-              onTap: () {
-                Get.to(() => ProfileScreen());
-              },
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                        height: 35.h,
-                        width: 35.w,
-                        child: Image.asset(
-                          "assets/sh.png",
-                          height: 10.h,
-                          width: 10.w,
-                          // fit: BoxFit.cover,
-                        )),
+        appBar: _.ishowAp.value == true
+            ? AppBar(
+                backgroundColor: ConstColors.MainColor,
+                elevation: 0,
+                titleSpacing: 0,
+                title: Container(
+                    height: 50.h,
+                    width: 100.w,
+                    child: Image.asset(
+                      "assets/Mlogo.png",
+                      fit: BoxFit.cover,
+                    )),
+                leading: GestureDetector(
+                  onTap: () {
+                    Get.to(() => Categorylist());
+                  },
+                  child: Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                    size: 25,
                   ),
-                  Positioned(
-                    top: 7.w,
-                    right: 0.h,
-                    child: Container(
-                      height: 15.h,
-                      width: 15.w,
-                      decoration: BoxDecoration(
-                          color: Colors.white, shape: BoxShape.circle),
-                      child: Center(
-                        child: Text(
-                          "0",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 10.sp),
-                        ),
+                ),
+                actions: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => LoginScreen());
+                    },
+                    child: Center(
+                      child: Text(
+                        "Sign Up",
+                        style: TextStyle(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
                       ),
                     ),
                   ),
+                  7.w.widthBox,
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(() => ProfileScreen());
+                    },
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                              height: 35.h,
+                              width: 35.w,
+                              child: Image.asset(
+                                "assets/sh.png",
+                                height: 10.h,
+                                width: 10.w,
+                                // fit: BoxFit.cover,
+                              )),
+                        ),
+                        Positioned(
+                          top: 7.w,
+                          right: 0.h,
+                          child: Container(
+                            height: 15.h,
+                            width: 15.w,
+                            decoration: BoxDecoration(
+                                color: Colors.white, shape: BoxShape.circle),
+                            child: Center(
+                              child: Text(
+                                "0",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 10.sp),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  15.w.widthBox,
                 ],
+              )
+            : AppBar(
+                elevation: 0,
+                backgroundColor: ConstColors.MainColor,
+                leading: Container(),
               ),
-            ),
-            15.w.widthBox,
-          ],
-        ),
-        // : AppBar(
-        //     elevation: 0,
-        //     backgroundColor: ConstColors.MainColor,
-        //     leading: Container(),
-        //   ),
 
         drawer: Drawer(
           // width:
@@ -209,12 +208,17 @@ class MainHomeScreen extends StatelessWidget {
                   icon: GestureDetector(
                       onTap: () {
                         controller.pages(0);
+                        _.ishowAp.value = true;
+                        _.isColorActive.value = false;
                       },
                       child: Container(
                           height: 24.h,
                           width: 24.h,
                           child: Image.asset(
-                            "assets/Home.png",
+                            "assets/ho1.png",
+                            color: _.isColorActive != true
+                                ? Colors.grey
+                                : ConstColors.MainColor,
                           ))),
                 ),
                 BottomNavigationBarItem(
@@ -222,17 +226,26 @@ class MainHomeScreen extends StatelessWidget {
                   icon: GestureDetector(
                       onTap: () {
                         controller.pages(1);
+                        _.ishowAp.value = true;
+                        _.isColorActive.value = true;
                       },
                       child: Container(
                           height: 24.h,
                           width: 24.h,
-                          child: Image.asset("assets/C.png"))),
+                          child: Image.asset(
+                            "assets/c11.png",
+                            color: _.isColorActive != true
+                                ? Colors.grey
+                                : ConstColors.MainColor,
+                          ))),
                 ),
                 BottomNavigationBarItem(
                   label: "Order",
                   icon: GestureDetector(
                       onTap: () {
                         controller.pages(2);
+                        _.ishowAp.value = true;
+                        _.isColorActive.value = false;
                       },
                       child: Container(
                           height: 24.h,
@@ -244,6 +257,8 @@ class MainHomeScreen extends StatelessWidget {
                   icon: GestureDetector(
                       onTap: () {
                         controller.pages(3);
+                        _.ishowAp.value = true;
+                        _.isColorActive.value = false;
                       },
                       // child: Icon(Icons.waves, color: ConstColors.NavbarIconC),
                       child: Container(
@@ -256,6 +271,8 @@ class MainHomeScreen extends StatelessWidget {
                   icon: GestureDetector(
                       onTap: () {
                         controller.pages(4);
+                        _.ishowAp.value = false;
+                        _.isColorActive.value = false;
                       },
                       child: Container(
                           height: 24.h,

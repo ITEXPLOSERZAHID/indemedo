@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              50.h.heightBox,
+              20.h.heightBox,
               Center(
                 child: Container(
                   child: Image.asset(
@@ -31,10 +31,10 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              
               TextField(
                 style: TextStyle(color: Colors.white),
                 keyboardType: TextInputType.number,
+
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly
                 ], // Only numbers can be entered
@@ -48,13 +48,13 @@ class ProfileScreen extends StatelessWidget {
                     // border: UnderlineInputBorder(
                     //   borderSide: BorderSide(color: theColor),
                     // ),
-                    // hintText: "Enter your email",
+                    // hintText: "Mobile Number",
                     labelText: "Mobile Number",
-                    labelStyle: TextStyle(color: Colors.white, fontSize: 10.sp),
-                    border:  UnderlineInputBorder(
-                        borderSide:  BorderSide(color: Colors.white))),
+                    hintStyle: TextStyle(color: Colors.white, fontSize: 12.sp),
+                    labelStyle: TextStyle(color: Colors.white, fontSize: 12.sp),
+                    border: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white))),
               ),
-              
               50.h.heightBox,
               Container(
                 height: 50.h,
@@ -67,7 +67,7 @@ class ProfileScreen extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        backgroundColor: Color(0xfffe7200)),
+                        backgroundColor: Color(0xfffd8701)),
                     onPressed: () {},
                     child: Text(
                       "LOGIN OR SIGNUP",
