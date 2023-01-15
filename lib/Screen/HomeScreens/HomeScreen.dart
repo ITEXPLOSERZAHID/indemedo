@@ -3,6 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:indimedo/APIService.dart';
 import 'package:indimedo/Constants/ColorConstants.dart';
+import 'package:indimedo/Screen/HomeScreens/AllMedicine.dart';
+import 'package:indimedo/Screen/HomeScreens/HomeProductPages/DiscountOffer.dart';
+import 'package:indimedo/Screen/HomeScreens/HomeProductPages/MetHealthCompScreen.dart';
+import 'package:indimedo/Screen/HomeScreens/HomeProductPages/ProductPages.dart';
 import 'package:indimedo/Screen/HomeScreens/SearchProductScreen.dart';
 import 'package:indimedo/Screen/HomeScreens/slider_screen.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -28,12 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   List imglist2 = [
-    "assets/co.jpg",
-    "assets/co.jpg",
-    "assets/co.jpg",
-    "assets/co.jpg",
-    "assets/co.jpg",
-    "assets/co.jpg",
     "assets/co.jpg",
     "assets/co.jpg",
     "assets/co.jpg",
@@ -242,16 +240,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ///6 temporary
                                 children: List.generate(
                                     mapTradingProduct.length, (index) {
-                                  return Container(
-                                    height: 70.h,
-                                    width: 170.w,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5.r))),
-                                    child: Image.network(
-                                      // "assets/t.PNG",
-                                      "${mapTradingProduct[index]['image']}",
-                                      fit: BoxFit.cover,
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.to(() => Productpages(
+                                          title: mapTradingProduct[index]
+                                              ['name']));
+                                    },
+                                    child: Container(
+                                      height: 70.h,
+                                      width: 170.w,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5.r))),
+                                      child: Image.network(
+                                        // "assets/t.PNG",
+                                        "${mapTradingProduct[index]['image']}",
+                                        fit: BoxFit.fill,
+                                      ),
                                     ),
                                   );
                                 }));
@@ -361,20 +366,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                 scrollDirection: Axis.vertical,
                                 children: List.generate(mapShopbyBrands.length,
                                     (index) {
-                                  return Container(
-                                    height: 39.h,
-                                    width: 170.w,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.grey),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5.r))),
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 10.h, vertical: 10.w),
-                                      child: Center(
-                                          child: Image.network(
-                                        "${mapShopbyBrands[index]['image']}",
-                                      )),
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.to(
+                                          () => Productpages(title: "Brands"));
+                                    },
+                                    child: Container(
+                                      height: 39.h,
+                                      width: 170.w,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5.r))),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10.h, vertical: 10.w),
+                                        child: Center(
+                                            child: Image.network(
+                                          "${mapShopbyBrands[index]['image']}",
+                                        )),
+                                      ),
                                     ),
                                   );
                                 }));
@@ -390,6 +402,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             "Discount Offer",
@@ -399,38 +412,67 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16.sp),
                           ),
-                          Spacer(),
-                          Text(
-                            "See all",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: ConstColors.DarkMainColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16.sp),
+                          // Spacer(),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => SeeALLOffer());
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  "See All",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: ConstColors.DarkMainColor,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16.sp),
+                                ),
+                                Container(
+                                    height: 30.h,
+                                    width: 30.w,
+                                    child: Image.asset("assets/ri.png")),
+                              ],
+                            ),
                           ),
-                          Container(
-                              height: 30.h,
-                              width: 30.w,
-                              child: Image.asset("assets/ri.png")),
                         ],
                       ),
                       15.h.heightBox,
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            GestureDetector(
+                              onTap: () {
+                                Get.to(() => AllMedicine());
+                              },
+                              child: discountOfferContainer(
+                                  "https://media.istockphoto.com/id/635948926/photo/3d-rendering-of-antibiotic-pills-in-blister-pack.jpg?s=1024x1024&w=is&k=20&c=sMSJnCEeUR5OMQCkclnORYkh2pBX6LJC0OMATQpqzIg=",
+                                  "Azax 200MG SUSPENSIONHome",
+                                  "39.74",
+                                  "51.6",
+                                  23),
+                            ),
+                            discountOfferContainer(
+                                "https://media.istockphoto.com/id/635948926/photo/3d-rendering-of-antibiotic-pills-in-blister-pack.jpg?s=1024x1024&w=is&k=20&c=sMSJnCEeUR5OMQCkclnORYkh2pBX6LJC0OMATQpqzIg=",
+                                "Azax 200MG SUSPENSIONHome",
+                                "39.74",
+                                "51.6",
+                                23)
+
+                            ///////not working API but functionality work ////
                             // ListView.builder(
-                            //   shrinkWrap: true,
-                            //   itemCount: mapdiscountOffer.length,
-                            //   itemBuilder: (context, index) {
-                            //   return discountOfferContainer(
-                            //     "${mapdiscountOffer[index]['image']}",
-                            //     "${mapdiscountOffer[index]['name']}",
-                            //     "${mapdiscountOffer[index]["regular_price"]}",
-                            //     "${mapdiscountOffer[index]["new_price"]}",
-                            //     "${mapdiscountOffer[index]['discount']}",
-                            //   );
-                            // }),
+                            //     shrinkWrap: true,
+                            //     itemCount: mapdiscountOffer.length,
+                            //     itemBuilder: (context, index) {
+                            //       return discountOfferContainer(
+                            //         "${mapdiscountOffer[index]['image']}",
+                            //         "${mapdiscountOffer[index]['name']}",
+                            //         "${mapdiscountOffer[index]["regular_price"]}",
+                            //         "${mapdiscountOffer[index]["new_price"]}",
+                            //         "${mapdiscountOffer[index]['discount']}",
+                            //       );
+                            //     }),
                           ],
                         ),
                       ),
@@ -455,36 +497,53 @@ class _HomeScreenState extends State<HomeScreen> {
                       GridView.count(
                           physics: ScrollPhysics(),
                           crossAxisCount: 3,
+                          childAspectRatio: 20.w / 35.h,
                           mainAxisSpacing: 10,
                           crossAxisSpacing: 10,
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           children: List.generate(imglist2.length, (index) {
-                            return Container(
-                              height: 70.h,
-                              width: 170.w,
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5.r))),
-                              child: Column(
-                                children: [
-                                  Center(
-                                    child: Image.asset(
-                                      "${imglist2[index]}",
-                                      fit: BoxFit.cover,
-                                      height: 80,
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(() => AllMedicine());
+                              },
+                              child: Container(
+                                height: 70.h,
+                                width: 170.w,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5.r))),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          //   boxShadow: <BoxShadow>[
+                                          //     BoxShadow(
+                                          //         color: Colors.black54,
+                                          //         blurRadius: 15.0,
+                                          //         offset: Offset(0.0, 0.75))
+                                          //   ],
+                                          ),
+                                      child: Center(
+                                        child: Image.asset(
+                                          "assets/hp.PNG",
+                                          fit: BoxFit.cover,
+                                          height: 100,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  5.h.heightBox,
-                                  Text(
-                                    "Face mask",
-                                    softWrap: true,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14.sp),
-                                  ),
-                                ],
+                                    5.h.heightBox,
+                                    Text(
+                                      "Omron HEM-6121 Automatic Wrist Blood Pressure",
+                                      softWrap: true,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14.sp),
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           })),
@@ -498,6 +557,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             "Homeopathy",
@@ -507,19 +567,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16.sp),
                           ),
-                          Spacer(),
-                          Text(
-                            "See all",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: ConstColors.DarkMainColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16.sp),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => SeeALLOffer());
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  "See all",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: ConstColors.DarkMainColor,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16.sp),
+                                ),
+                                Container(
+                                    height: 30.h,
+                                    width: 30.w,
+                                    child: Image.asset("assets/ri.png")),
+                              ],
+                            ),
                           ),
-                          Container(
-                              height: 30.h,
-                              width: 30.w,
-                              child: Image.asset("assets/ri.png")),
                         ],
                       ),
                       15.h.heightBox,
@@ -553,11 +621,64 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.w500,
                             fontSize: 16.sp),
                       ),
-                      8.h.heightBox,
-                      Image.asset(
-                        "assets/ma.jpg",
-                        fit: BoxFit.cover,
-                      )
+                      12.h.heightBox,
+                      GridView.count(
+                          physics: ScrollPhysics(),
+                          crossAxisCount: 3,
+                          childAspectRatio: 20.w / 23.h,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          children: List.generate(imglist2.length, (index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(() => AllMedicine());
+                              },
+                              child: Container(
+                                height: 70.h,
+                                width: 170.w,
+                                decoration: BoxDecoration(
+                                    boxShadow: <BoxShadow>[
+                                      BoxShadow(
+                                          color: Colors.black54,
+                                          blurRadius: 3.0,
+                                          offset: Offset(0.0, 0.75))
+                                    ],
+                                    color: Colors.white,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8.r))),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: 80.h,
+                                      width: Get.width,
+                                      child: Center(
+                                        child: Image.asset(
+                                          "assets/bs.PNG",
+                                          fit: BoxFit.fill,
+                                          height: 100,
+                                        ),
+                                      ),
+                                    ),
+                                    5.h.heightBox,
+                                    Center(
+                                      child: Text(
+                                        "Body Soap",
+                                        softWrap: true,
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 14.sp),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          })),
                     ],
                   ),
                 ),
@@ -567,21 +688,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     shrinkWrap: true,
                     itemCount: advt1.length,
                     itemBuilder: (context, index) {
-                      return Container(
-                        child: Image.network("${advt1[index]['image']}"),
+                      return GestureDetector(
+                        onTap: () {
+                          Get.to(() => AllMedicine());
+                        },
+                        child: Container(
+                          child: Image.network("${advt1[index]['image']}"),
+                        ),
                       );
                     }),
                 8.h.heightBox,
-                ListView.builder(
-                    shrinkWrap: true,
-                    physics: ScrollPhysics(),
-                    itemCount: advt2.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        child: Image.network("${advt2[index]['image']}"),
-                      );
-                    }),
-                8.h.heightBox,
+
                 Container(
                   color: Colors.white,
                   child: Column(
@@ -597,40 +714,59 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       8.h.heightBox,
                       GridView.count(
-                          // childAspectRatio: (200.w / 150.h),
                           physics: ScrollPhysics(),
                           crossAxisCount: 3,
+                          childAspectRatio: 20.w / 23.h,
                           mainAxisSpacing: 10,
                           crossAxisSpacing: 10,
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
-                          children: List.generate(12, (index) {
-                            return Container(
-                              height: 70.h,
-                              width: 170.w,
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5.r))),
-                              child: Column(
-                                children: [
-                                  Center(
-                                    child: Image.asset(
-                                      "assets/d.PNG",
-                                      // "${imglist2[index]}",
-                                      fit: BoxFit.cover,
-                                      height: 80,
+                          children: List.generate(imglist2.length, (index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(() => AllMedicine());
+                              },
+                              child: Container(
+                                height: 70.h,
+                                width: 170.w,
+                                decoration: BoxDecoration(
+                                    boxShadow: <BoxShadow>[
+                                      BoxShadow(
+                                          color: Colors.black54,
+                                          blurRadius: 3.0,
+                                          offset: Offset(0.0, 0.75))
+                                    ],
+                                    color: Colors.white,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8.r))),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      height: 80.h,
+                                      width: Get.width,
+                                      child: Center(
+                                        child: Image.asset(
+                                          "assets/bs.PNG",
+                                          fit: BoxFit.fill,
+                                          height: 100,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  5.h.heightBox,
-                                  Text(
-                                    "Face mask",
-                                    softWrap: true,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14.sp),
-                                  ),
-                                ],
+                                    5.h.heightBox,
+                                    Center(
+                                      child: Text(
+                                        "Baby Diaper",
+                                        softWrap: true,
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 14.sp),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           })),
@@ -639,11 +775,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 8.h.heightBox,
+
+                ListView.builder(
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    itemCount: advt2.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        child: Image.network("${advt2[index]['image']}"),
+                      );
+                    }),
+                8.h.heightBox,
                 Container(
                   color: Colors.white,
                   child: Column(
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             "Personal Care",
@@ -653,19 +801,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16.sp),
                           ),
-                          Spacer(),
-                          Text(
-                            "See all",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: ConstColors.DarkMainColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16.sp),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(() => SeeALLOffer());
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  "See all",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: ConstColors.DarkMainColor,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16.sp),
+                                ),
+                                Container(
+                                    height: 30.h,
+                                    width: 30.w,
+                                    child: Image.asset("assets/ri.png")),
+                              ],
+                            ),
                           ),
-                          Container(
-                              height: 30.h,
-                              width: 30.w,
-                              child: Image.asset("assets/ri.png")),
                         ],
                       ),
                       15.h.heightBox,
@@ -731,32 +887,39 @@ class _HomeScreenState extends State<HomeScreen> {
                                 scrollDirection: Axis.vertical,
                                 children: List.generate(
                                     mapMedicalDevices.length, (index) {
-                                  return Container(
-                                    height: 100.h,
-                                    width: 170.w,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5.r))),
-                                    child: Column(
-                                      children: [
-                                        Center(
-                                          child: Image.network(
-                                            "${mapMedicalDevices[index]['image']}",
-                                            // "${imglist2[index]}",
-                                            fit: BoxFit.cover,
-                                            height: 80,
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.to(() => Productpages(
+                                            title: "Thremometer",
+                                          ));
+                                    },
+                                    child: Container(
+                                      height: 100.h,
+                                      width: 170.w,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5.r))),
+                                      child: Column(
+                                        children: [
+                                          Center(
+                                            child: Image.network(
+                                              "${mapMedicalDevices[index]['image']}",
+                                              // "${imglist2[index]}",
+                                              fit: BoxFit.cover,
+                                              height: 80,
+                                            ),
                                           ),
-                                        ),
-                                        5.h.heightBox,
-                                        Text(
-                                          "${mapMedicalDevices[index]['name']}",
-                                          softWrap: true,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 14.sp),
-                                        ),
-                                      ],
+                                          5.h.heightBox,
+                                          Text(
+                                            "${mapMedicalDevices[index]['name']}",
+                                            softWrap: true,
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14.sp),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   );
                                 }));
@@ -857,32 +1020,40 @@ class _HomeScreenState extends State<HomeScreen> {
                                 scrollDirection: Axis.vertical,
                                 children: List.generate(mapDietNutrition.length,
                                     (index) {
-                                  return Container(
-                                    height: 70.h,
-                                    width: 170.w,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(5.r))),
-                                    child: Column(
-                                      children: [
-                                        Center(
-                                          child: Image.network(
-                                            // "assets/t.PNG",
-                                            "${mapDietNutrition[index]['image']}",
-                                            fit: BoxFit.cover,
-                                            height: 80,
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.to(() => Productpages(
+                                            title: mapDietNutrition[index]
+                                                ['name'],
+                                          ));
+                                    },
+                                    child: Container(
+                                      height: 70.h,
+                                      width: 170.w,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5.r))),
+                                      child: Column(
+                                        children: [
+                                          Center(
+                                            child: Image.network(
+                                              // "assets/t.PNG",
+                                              "${mapDietNutrition[index]['image']}",
+                                              fit: BoxFit.cover,
+                                              height: 80,
+                                            ),
                                           ),
-                                        ),
-                                        5.h.heightBox,
-                                        Text(
-                                          "${mapDietNutrition[index]['name']}",
-                                          softWrap: true,
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 14.sp),
-                                        ),
-                                      ],
+                                          5.h.heightBox,
+                                          Text(
+                                            "${mapDietNutrition[index]['name']}",
+                                            softWrap: true,
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14.sp),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   );
                                 }));
@@ -956,72 +1127,78 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Padding immunityBoosterContainer() {
     return Padding(
-      padding: EdgeInsets.only(right: 4.h),
-      child: Container(
-        height: 260.h,
-        width: 250.w,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Center(
-                child: Container(
-                    height: 120.h,
-                    width: 120.w,
-                    child: Image.asset("assets/a.PNG"))),
-            10.h.heightBox,
-            Text(
-              "Fast and Up Everyday...",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16.sp),
-            ),
-            5.h.heightBox,
-            RichText(
-              text: TextSpan(
-                text: '\$1476',
+      padding: EdgeInsets.only(right: 10.h),
+      child: GestureDetector(
+        onTap: () {
+          Get.to(() => AllMedicine());
+        },
+        child: Container(
+          height: 220.h,
+          width: 200.w,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Center(
+                  child: Container(
+                      height: 120.h,
+                      width: 120.w,
+                      child: Image.asset("assets/a.PNG"))),
+              10.h.heightBox,
+              Text(
+                "Fast and Up Everyday...",
                 style: TextStyle(
-                    fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: 16.sp),
-                children: [
-                  WidgetSpan(child: SizedBox(width: 5.w)),
-                  TextSpan(
-                      text: '\$1640',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          decoration: TextDecoration.lineThrough,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold)),
-                  WidgetSpan(child: SizedBox(width: 5.w)),
-                  TextSpan(
-                    text: "10% off",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.green,
-                        fontSize: 14.sp),
-                  ),
-                ],
-              ),
-            ),
-            13.h.heightBox,
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(8.r)),
-                  border: Border.all(width: 2.w, color: ConstColors.MainColor)),
-              height: 40.h,
-              width: Get.width.w,
-              child: Center(
-                  child: Text(
-                "Add to cart",
-                style: TextStyle(
-                    color: ConstColors.MainColor,
                     fontWeight: FontWeight.w600,
-                    fontSize: 14.sp),
-              )),
-            )
-          ],
+                    fontSize: 16.sp),
+              ),
+              5.h.heightBox,
+              RichText(
+                text: TextSpan(
+                  text: '\$1476',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                      fontSize: 16.sp),
+                  children: [
+                    WidgetSpan(child: SizedBox(width: 5.w)),
+                    TextSpan(
+                        text: '\$1640',
+                        style: TextStyle(
+                            color: Colors.grey,
+                            decoration: TextDecoration.lineThrough,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold)),
+                    WidgetSpan(child: SizedBox(width: 5.w)),
+                    TextSpan(
+                      text: "10% off",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.green,
+                          fontSize: 14.sp),
+                    ),
+                  ],
+                ),
+              ),
+              13.h.heightBox,
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.r)),
+                    border: Border.all(width: 1.w, color: Colors.black)),
+                height: 30.h,
+                width: Get.width.w,
+                child: Center(
+                    child: Text(
+                  "Add to Cart",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12.sp),
+                )),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -1030,71 +1207,77 @@ class _HomeScreenState extends State<HomeScreen> {
   Padding personalCareContainer() {
     return Padding(
       padding: EdgeInsets.only(right: 4.h),
-      child: Container(
-        height: 260.h,
-        width: 250.w,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Center(
-                child: Container(
-                    height: 120.h,
-                    width: 120.w,
-                    child: Image.asset("assets/bo.jpg"))),
-            10.h.heightBox,
-            Text(
-              "Inlife Fruit Face Scrub",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16.sp),
-            ),
-            5.h.heightBox,
-            RichText(
-              text: TextSpan(
-                text: '\$359.1',
+      child: GestureDetector(
+        onTap: () {
+          Get.to(() => AllMedicine());
+        },
+        child: Container(
+          height: 260.h,
+          width: 200.w,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Center(
+                  child: Container(
+                      height: 120.h,
+                      width: 120.w,
+                      child: Image.asset("assets/bo.jpg"))),
+              10.h.heightBox,
+              Text(
+                "Inlife Fruit Face Scrub",
                 style: TextStyle(
-                    fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: 16.sp),
-                children: [
-                  WidgetSpan(child: SizedBox(width: 5.w)),
-                  TextSpan(
-                      text: '\$399',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          decoration: TextDecoration.lineThrough,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold)),
-                  WidgetSpan(child: SizedBox(width: 5.w)),
-                  TextSpan(
-                    text: "10% off",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.green,
-                        fontSize: 14.sp),
-                  ),
-                ],
-              ),
-            ),
-            13.h.heightBox,
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(8.r)),
-                  border: Border.all(width: 2.w, color: ConstColors.MainColor)),
-              height: 40.h,
-              width: Get.width.w,
-              child: Center(
-                  child: Text(
-                "Add to cart",
-                style: TextStyle(
-                    color: ConstColors.MainColor,
                     fontWeight: FontWeight.w600,
-                    fontSize: 14.sp),
-              )),
-            )
-          ],
+                    fontSize: 16.sp),
+              ),
+              5.h.heightBox,
+              RichText(
+                text: TextSpan(
+                  text: '\$359.1',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                      fontSize: 16.sp),
+                  children: [
+                    WidgetSpan(child: SizedBox(width: 5.w)),
+                    TextSpan(
+                        text: '\$399',
+                        style: TextStyle(
+                            color: Colors.grey,
+                            decoration: TextDecoration.lineThrough,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold)),
+                    WidgetSpan(child: SizedBox(width: 5.w)),
+                    TextSpan(
+                      text: "10% off",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.green,
+                          fontSize: 14.sp),
+                    ),
+                  ],
+                ),
+              ),
+              13.h.heightBox,
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(8.r)),
+                    border: Border.all(width: 1.w, color: Colors.grey)),
+                height: 30.h,
+                width: Get.width.w,
+                child: Center(
+                    child: Text(
+                  "Add to Cart",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12.sp),
+                )),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -1102,88 +1285,90 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Padding homeopathyContainer() {
     return Padding(
-      padding: EdgeInsets.only(right: 4.h),
-      child: Container(
-        height: 260.h,
-        width: 250.w,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Center(
-                child: Container(
-                    height: 120.h,
-                    width: 120.w,
-                    child: Image.asset("assets/bo.jpg"))),
-            10.h.heightBox,
-            Text(
-              "Wheezal Eye Bright Eye...",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16.sp),
-            ),
-            Text(
-              "Rx (Presription required)",
-              style: TextStyle(
-                  color: ConstColors.MainColor,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16.sp),
-            ),
-            5.h.heightBox,
-            RichText(
-              text: TextSpan(
-                text: '\$66.3',
+      padding: EdgeInsets.only(right: 10.h),
+      child: GestureDetector(
+        onTap: () {
+          Get.to(() => AllMedicine());
+        },
+        child: Container(
+          height: 260.h,
+          width: 200.w,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Center(
+                  child: Container(
+                      height: 120.h,
+                      width: 120.w,
+                      child: Image.asset(
+                        "assets/bo.jpg",
+                        height: 50.h,
+                      ))),
+              10.h.heightBox,
+              Text(
+                "Wheezal Eye Bright Eye...",
                 style: TextStyle(
-                    fontWeight: FontWeight.w600,
                     color: Colors.black,
-                    fontSize: 16.sp),
-                children: [
-                  WidgetSpan(child: SizedBox(width: 5.w)),
-                  TextSpan(
-                      text: '\$85',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          decoration: TextDecoration.lineThrough,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold)),
-                  WidgetSpan(child: SizedBox(width: 5.w)),
-                  TextSpan(
-                    text: "22% off",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.green,
-                        fontSize: 14.sp),
-                  ),
-                ],
-              ),
-            ),
-            13.h.heightBox,
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(8.r)),
-                  border: Border.all(width: 2.w, color: ConstColors.MainColor)),
-              height: 40.h,
-              width: Get.width.w,
-              child: Center(
-                  child: Text(
-                "Add to cart",
-                style: TextStyle(
-                    color: ConstColors.MainColor,
                     fontWeight: FontWeight.w600,
-                    fontSize: 14.sp),
-              )),
-            )
-          ],
+                    fontSize: 16.sp),
+              ),
+              5.h.heightBox,
+              RichText(
+                text: TextSpan(
+                  text: '\$66.3',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                      fontSize: 16.sp),
+                  children: [
+                    WidgetSpan(child: SizedBox(width: 5.w)),
+                    TextSpan(
+                        text: '\$85',
+                        style: TextStyle(
+                            color: Colors.grey,
+                            decoration: TextDecoration.lineThrough,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold)),
+                    WidgetSpan(child: SizedBox(width: 5.w)),
+                    TextSpan(
+                      text: "22% off",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.green,
+                          fontSize: 14.sp),
+                    ),
+                  ],
+                ),
+              ),
+              13.h.heightBox,
+              Container(
+                decoration: BoxDecoration(
+                  color: ConstColors.MainColor,
+                  borderRadius: BorderRadius.all(Radius.circular(8.r)),
+                ),
+                height: 30.h,
+                width: Get.width.w,
+                child: Center(
+                    child: Text(
+                  "Add to Cart",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12.sp),
+                )),
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Padding discountOfferContainer(var networkimg, var tabletName, var newPrice,
-      var regularPrice, var discount) {
+  Padding discountOfferContainer(var networkimg, var tabletName,
+      String newPrice, String regularPrice, var discount) {
     return Padding(
-      padding: EdgeInsets.only(right: 4.h),
+      padding: EdgeInsets.only(right: 12.h),
       child: Container(
         height: 260.h,
         width: 250.w,
@@ -1243,16 +1428,16 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(8.r)),
-                  border: Border.all(width: 2.w, color: ConstColors.MainColor)),
+                  border: Border.all(width: 1.w, color: Colors.grey)),
               height: 40.h,
               width: Get.width.w,
               child: Center(
                   child: Text(
-                "Add to cart",
+                "Add to Cart",
                 style: TextStyle(
-                    color: ConstColors.MainColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14.sp),
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18.sp),
               )),
             )
           ],
@@ -1264,96 +1449,74 @@ class _HomeScreenState extends State<HomeScreen> {
   Padding methealthContainer() {
     return Padding(
       padding: EdgeInsets.only(right: 7.h),
-      child: Container(
-        height: 170.h,
-        width: 300.w,
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey),
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(6.r))),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              10.h.heightBox,
-              Text(
-                "Met Health Comprehensive",
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
-              ),
-              5.h.heightBox,
-              Text(
-                "includes 12 tests",
-                style: TextStyle(color: Colors.grey, fontSize: 14.sp),
-              ),
-              5.h.heightBox,
-              Container(
-                  height: 30.h,
-                  width: 80.w,
-                  child: Image.asset("assets/me.jpg")),
-              5.h.heightBox,
-              Text(
-                "Iron Studies Iron, TIBC, TS%",
-                style: TextStyle(color: Colors.grey, fontSize: 14.sp),
-              ),
-              5.h.heightBox,
-              Row(
-                children: [
-                  Icon(
-                    Icons.star,
-                    color: Colors.green,
-                    size: 20.sp,
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: Colors.green,
-                    size: 20.sp,
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: Colors.green,
-                    size: 20.sp,
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: Colors.green,
-                    size: 20.sp,
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: Colors.green,
-                    size: 20.sp,
-                  ),
-                  8.w.widthBox,
-                  Text(
-                    "4.8",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        color: Colors.green,
-                        fontSize: 14.sp),
-                  ),
-                ],
-              ),
-              10.h.heightBox,
-              RichText(
-                text: TextSpan(
-                  text: '\$2199',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black,
-                      fontSize: 16.sp),
+      child: GestureDetector(
+        onTap: () {
+          Get.to(() => MetHealthScreen(title: "MET HEALTHY WOMEN"));
+        },
+        child: Container(
+          height: 170.h,
+          width: 300.w,
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(6.r))),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                10.h.heightBox,
+                Text(
+                  "Met Health Comprehensive",
+                  style:
+                      TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
+                ),
+                5.h.heightBox,
+                Text(
+                  "includes 12 tests",
+                  style: TextStyle(color: Colors.grey, fontSize: 14.sp),
+                ),
+                5.h.heightBox,
+                Container(
+                    height: 30.h,
+                    width: 80.w,
+                    child: Image.asset("assets/me.jpg")),
+                5.h.heightBox,
+                Text(
+                  "Iron Studies Iron, TIBC, TS%",
+                  style: TextStyle(color: Colors.grey, fontSize: 14.sp),
+                ),
+                5.h.heightBox,
+                Row(
                   children: [
-                    WidgetSpan(child: SizedBox(width: 5.w)),
-                    TextSpan(
-                        text: '\$8085',
-                        style: TextStyle(
-                            color: Colors.grey,
-                            decoration: TextDecoration.lineThrough,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold)),
-                    WidgetSpan(child: SizedBox(width: 5.w)),
-                    TextSpan(
-                      text: "73% off",
+                    Icon(
+                      Icons.star,
+                      color: Colors.green,
+                      size: 20.sp,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.green,
+                      size: 20.sp,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.green,
+                      size: 20.sp,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.green,
+                      size: 20.sp,
+                    ),
+                    Icon(
+                      Icons.star,
+                      color: Colors.green,
+                      size: 20.sp,
+                    ),
+                    8.w.widthBox,
+                    Text(
+                      "4.8",
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           color: Colors.green,
@@ -1361,8 +1524,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                 ),
-              )
-            ],
+                10.h.heightBox,
+                RichText(
+                  text: TextSpan(
+                    text: '\$2199',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                        fontSize: 16.sp),
+                    children: [
+                      WidgetSpan(child: SizedBox(width: 5.w)),
+                      TextSpan(
+                          text: '\$8085',
+                          style: TextStyle(
+                              color: Colors.grey,
+                              decoration: TextDecoration.lineThrough,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold)),
+                      WidgetSpan(child: SizedBox(width: 5.w)),
+                      TextSpan(
+                        text: "73% off",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.green,
+                            fontSize: 14.sp),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:indimedo/AddToCart.dart';
 import 'package:indimedo/Constants/ColorConstants.dart';
+import 'package:indimedo/Screen/HomeScreens/ProfileScreen.dart';
+import 'package:indimedo/Screen/HomeScreens/SinUpScreen.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class AllMedicine extends StatelessWidget {
@@ -86,24 +88,32 @@ class AllMedicine extends StatelessWidget {
                     ],
                   ),
                   7.h.heightBox,
+                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                        height: 50.h,
-                        width: 120.w,
-                        decoration: BoxDecoration(color: ConstColors.MainColor),
-                        child: Center(
-                          child: Text(
-                            "ADD CART",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(() => ProfileScreen());
+                        },
+                        child: Container(
+                          height: 50.h,
+                          width: 120.w,
+                          decoration:
+                              BoxDecoration(color: ConstColors.MainColor),
+                          child: Center(
+                            child: Text(
+                              "ADD CART",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
                         ),
                       )
                     ],
                   ),
+                  
                   10.h.heightBox,
                   Text(
                     " has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was pop",
@@ -369,24 +379,24 @@ class AllMedicine extends StatelessWidget {
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: (){
-                Get.to(()=>AddToCart());
-              },
-              child: Container(
-                //  margin: EdgeInsets.only(top: Get.height * 1.0),
-                height: 50.h,
-                width: Get.width,
-                color: Color(0xfff73a02),
-                child: Center(
-                  child: Text(
-                    "GO TO CART",
-                    style: TextStyle(color: Colors.white, fontSize: 14.sp),
-                  ),
-                ),
-              ),
-            )
           ],
+        ),
+      ),
+      bottomNavigationBar: GestureDetector(
+        onTap: () {
+          Get.to(() => AddToCart());
+        },
+        child: Container(
+          //  margin: EdgeInsets.only(top: Get.height * 1.0),
+          height: 50.h,
+          width: Get.width,
+          color: Color(0xfff73a02),
+          child: Center(
+            child: Text(
+              "GO TO CART",
+              style: TextStyle(color: Colors.white, fontSize: 14.sp),
+            ),
+          ),
         ),
       ),
     );

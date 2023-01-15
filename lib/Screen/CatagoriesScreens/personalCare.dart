@@ -32,7 +32,9 @@ class PersonalCareScreen extends StatelessWidget {
         ),
       ),
       
-      body: SingleChildScrollView(
+      body: 
+      
+      SingleChildScrollView(
         child: Column(
           children: [
             FutureBuilder(
@@ -94,6 +96,7 @@ class PersonalCareScreen extends StatelessWidget {
           ],
         ),
       ),
+    
     );
   }
 }

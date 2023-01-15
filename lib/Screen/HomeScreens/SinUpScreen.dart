@@ -33,7 +33,46 @@ class LoginScreen extends StatelessWidget {
               fontWeight: FontWeight.w500),
         ),
       ),
-      
+
+      bottomNavigationBar:  
+            Container(
+              height: 110.h,
+              width: Get.width.w,
+              decoration: BoxDecoration(color: Colors.grey[300]),
+              child: Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 15.h, vertical: 15.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Your Betterment is our concern!!",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    5.h.heightBox,
+                    Text(
+                      "Sign in to start your healthcare journey",
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    5.h.heightBox,
+                    Text(
+                      "Made with Heart by Indimedo",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16.sp,
+                      ),
+                    ),
+                    10.h.heightBox,
+                  ],
+                ),
+              ),
+            ),
       
       body: SingleChildScrollView(
         child: Column(
@@ -124,47 +163,7 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 110.h,
-                width: Get.width.w,
-                decoration: BoxDecoration(color: Colors.grey[300]),
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 15.h, vertical: 15.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Your Betterment is our concern!!",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      5.h.heightBox,
-                      Text(
-                        "Sign in to start your healthcare journey",
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600),
-                      ),
-                      5.h.heightBox,
-                      Text(
-                        "Made with Heart by Indimedo",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16.sp,
-                        ),
-                      ),
-                      10.h.heightBox,
-                    ],
-                  ),
-                ),
-              ),
-            ),
+           
           ],
         ),
       ),
